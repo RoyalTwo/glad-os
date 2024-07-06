@@ -1,21 +1,28 @@
 # blueOS
-#### A custom 32-bit operating system built from scratch for the x86 architecture.
-Right now, the kernel is being loaded with GRUB in 32-bit protected mode. I've written a custom bootloader in assembly with disk loading and conversion from LBA to CHS, but opted to switch to GRUB afterwards since I built it for learning and wanted to focus primarily on the kernel. You can still find the custom bootloader in archive/, it also uses a FAT12 file system.
+#### A custom 64-bit operating system built from scratch for the x86_64 architecture.
+The kernel is currently being loaded with Limine. I've written a custom bootloader in assembly with disk loading and conversion from LBA to CHS, but opted to switch to Limine afterwards since I built it for learning and wanted to focus primarily on the kernel. You can still find the custom bootloader in archive/, it also uses a FAT12 file system.
 
-Currently, there is a VGA driver and terminal driver implemented with a **super** basic shell. The kernel loads these and prints some things to the screen, along with loading a Global Descriptor Table and Interrupt Descriptor Table.
-
-Future tasks:
-- [x] printf implementation
-- [x] Interrupt Descriptor Table
+The linker script, makefile, and entry point are provided as part of the Limine standard example. Everything else (the whole kernel) is custom.
+Goals:
+- [ ] printf Implementation
+- [ ] Global Descriptor Table
+- [ ] Interrupt Descriptor Table
 - [ ] Keyboard Input
 - [ ] File system (FAT32)
 - [ ] Paging
 - [ ] Memory management
+- [ ] Kernel/User mode separation
+- [ ] Basic shell
+- [ ] GUI
 ## Why?
 I started this project to learn about how operating systems work, low level concepts, and low level programming. Since starting, I have learned so much about assembly, processor architecture, memory, etc. and it's been exceedingly helpful to becoming a better and more experienced programmer. Plus, it's very satisfying to watch your own code boot! 😊
 ## Building/Running
 To run the OS:
-- Use the .ISO file in /bin/ with QEMU-i386 or Rufus to burn onto a USB, then boot on real hardware
+- Use the executable file (bin/blueOS) or ISO (bin/blueOS.iso) with QEMU-x86_64 to emulate or Rufus to burn onto a USB, then boot on real hardware
 
 To build from source:
-- You need a cross compiler. I'm working on a script that will build one for you. Once you have one, simply run "make run-iso" to run the ISO or "make run" to run just the kernel.
+- Run `BuildCross.sh` to build a cross-compiler for the project.
+- Run `make` to build executable 
+- (Optional) Run `./InstallLimine.sh` to install limine to the project directory (only relevant for ISO)
+- (Optional) Create the ISO with `./CreateISO.sh`
+- The executable and iso are in bin/

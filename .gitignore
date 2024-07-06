@@ -1,2 +1,11 @@
 compiler/
 compiler/*
+
+limine/
+limine/*
+
+obj/
+obj/*
+
+iso_root/
+iso_root/*

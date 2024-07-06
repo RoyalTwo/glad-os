@@ -43,7 +43,7 @@ tar xf gcc.tar.xz
 # Prep
 cwd=$(pwd)
 PREFIX=$cwd
-TARGET=i686-elf
+TARGET=x86_64-elf
 export PATH="$PREFIX/bin:$PATH"
 chmod -R 777 $cwd
 
